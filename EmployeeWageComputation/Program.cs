@@ -15,6 +15,7 @@ namespace EmployeeWageComputation
         private const int FULL_DAY_HOUR = 8;
         private const int HALF_DAY_HOUR = 4;
         private const int DAYS_PER_MONTH = 20;
+        private const int TOTAL_WORK_HOURS = 100;
 
         //Initializing Variables
         private static int dailyEmpHrs = 0;
@@ -22,19 +23,19 @@ namespace EmployeeWageComputation
 
         static void Main(string[] args)
         {
-            //Entered the welcome message
+            //Entered The Welcome Message
             Console.WriteLine("Welcome To The Employee Wage Computation Program");
             Console.ReadLine();
 
             // local Variable
-            int totalWage = 0, day = 0;
+            int totalWage = 0, day = 0, hours = 0;
 
-            //Calculating Wages Per Month(UC5)
+            //Calculating Wages Per Month And Added Total Hours Condition(UC5 & UC6)
             Random randCheck = new Random();
-            while ( day < DAYS_PER_MONTH)
+            while ( day < DAYS_PER_MONTH && hours <= TOTAL_WORK_HOURS)
             {
                 //Check Employ Is Present Or Absent(UC1)          
-                int checkAttend = randCheck.Next(0, 3);
+                int checkAttend = randCheck.Next(1, 3);
                 string chkEmp;
 
                 //Solved Using Switch Case(UC4)
@@ -53,13 +54,15 @@ namespace EmployeeWageComputation
                         dailyEmpHrs = 0;
                         break;
                 }
+
                 //Calculate Employ Daily Wage And Part Time Wage (UC2 & UC3)
                 dailyEmpWage = WAGE_PER_HOUR * dailyEmpHrs;
                 day++;
+                hours += dailyEmpHrs;
                 totalWage += dailyEmpWage;
-                Console.WriteLine("Day: {0} CheckEmployee: {1} DailyWage: {2}  TotalWage: {3}", day, chkEmp, dailyEmpWage, totalWage);
+                Console.WriteLine("Day: {0} CheckEmployee: {1} Hours: {2} DailyWage: {3}  TotalWage: {4}", day, chkEmp, hours, dailyEmpWage, totalWage);
             }
-            Console.WriteLine("\nEmploy Total Wage Per Month is : " + totalWage);
+            Console.WriteLine("\nEmploy Total Wage Per Month is : " +totalWage);
             Console.ReadLine();
         }
     }
