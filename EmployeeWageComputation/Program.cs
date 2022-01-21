@@ -39,25 +39,30 @@ namespace EmployeeWageComputation
                     int totalHours = int.Parse(Console.ReadLine());
                     if (i == 1)
                     {
-                        EmployeeWage.ComputeMonthlyWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);                        
+                        EmployeeWage companyOne = new EmployeeWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+                        companyOne.ComputeMonthlyWage();
+                        Console.WriteLine(companyOne.GetTotalWage());
                         Console.ReadLine();
-
                     }
                     if (i == 2)
                     {
-                        EmployeeWage.ComputeMonthlyWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+                        EmployeeWage companyTwo = new EmployeeWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+                        companyTwo.ComputeMonthlyWage();
+                        Console.WriteLine(companyTwo.GetTotalWage());
                         Console.ReadLine();
-
                     }
                     if (i == 3)
                     {
-                        EmployeeWage.ComputeMonthlyWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+                        EmployeeWage companyThree = new EmployeeWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+                        companyThree.ComputeMonthlyWage();
+                        Console.WriteLine(companyThree.GetTotalWage());
                         Console.ReadLine();
-
                     }
                     if (i == 4)
                     {
-                        EmployeeWage.ComputeMonthlyWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+                        EmployeeWage companyFour = new EmployeeWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+                        companyFour.ComputeMonthlyWage();
+                        Console.WriteLine(companyFour.GetTotalWage());
                         Console.ReadLine();
                     }
                 }
