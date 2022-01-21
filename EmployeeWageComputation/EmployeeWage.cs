@@ -12,17 +12,13 @@ namespace EmployeeWageComputation
         //Initializing Constant
         private const int FULL_TIME_EMP = 1;
         private const int PART_TIME_EMP = 2;
-        private const int WAGE_PER_HOUR = 20;
-        private const int FULL_DAY_HOUR = 8;
-        private const int HALF_DAY_HOUR = 4;
-        private const int DAYS_PER_MONTH = 20;
-        private const int TOTAL_WORK_HOURS = 100;
-
+   
         //Initializing Variables
         private static int dailyEmpHrs = 0;
         private static int dailyEmpWage = 0;
 
-        public static int ComputeMonthlyWage()
+        //Compute Employ Wage for Multiple Companies Using Procedural Ways (UC8)
+        public static int ComputeMonthlyWage(string company, string name, int wagePerHours, int dailyHours, int dayPerMonth, int totalHours)
         {
             // local Variable
             int totalWage = 0, day = 0, hours = 0;
@@ -30,21 +26,21 @@ namespace EmployeeWageComputation
 
             //Calculating Wages Per Month And Added Total Hours Condition(UC5 & UC6)
             Random randCheck = new Random();
-            while (day < DAYS_PER_MONTH && hours <= TOTAL_WORK_HOURS)
+            while (day < dayPerMonth && hours <= totalHours)
             {
                 //Check Employ Is Present Or Absent(UC1)          
-                int checkAttend = randCheck.Next(1, 3);
+                int checkAttend = randCheck.Next(0, 3);
 
                 //Solved Using Switch Case(UC4)
                 switch (checkAttend)
                 {
                     case FULL_TIME_EMP:
                         chkEmp = "Full Time";
-                        dailyEmpHrs = FULL_DAY_HOUR;
+                        dailyEmpHrs = dailyHours;
                         break;
                     case PART_TIME_EMP:
                         chkEmp = "Part Time";
-                        dailyEmpHrs = HALF_DAY_HOUR;
+                        dailyEmpHrs = dailyHours/2;
                         break;
                     default:
                         chkEmp = "  Absent  ";
@@ -53,12 +49,14 @@ namespace EmployeeWageComputation
                 }
 
                 //Calculate Employ Daily Wage And Part Time Wage (UC2 & UC3)
-                dailyEmpWage = WAGE_PER_HOUR * dailyEmpHrs;
+                dailyEmpWage = wagePerHours * dailyEmpHrs;
                 day++;
                 hours += dailyEmpHrs;
                 totalWage += dailyEmpWage;
                 Console.WriteLine("Day: {0} CheckEmployee: {1} Hours: {2} DailyWage: {3}  TotalWage: {4}", day, chkEmp, hours, dailyEmpWage, totalWage);
             }
+            Console.WriteLine("Employ Name : {0} \nCompany Name : {1} \nGot Total Monthly Wage of Rs : {2} \nTotal Working Hours : {3} \nTotal Working Day is : {4}",name, company, totalWage, hours, day);
+            Console.ReadLine();
             return totalWage;
         }
     }
