@@ -14,6 +14,7 @@ namespace EmployeeWageComputation
         private const int WAGE_PER_HOUR = 20;
         private const int FULL_DAY_HOUR = 8;
         private const int HALF_DAY_HOUR = 4;
+        private const int DAYS_PER_MONTH = 20;
 
         //Initializing Variables
         private static int dailyEmpHrs = 0;
@@ -25,35 +26,40 @@ namespace EmployeeWageComputation
             Console.WriteLine("Welcome To The Employee Wage Computation Program");
             Console.ReadLine();
 
-            //Check Employ Is Present Or Absent(UC1)          
+            // local Variable
+            int totalWage = 0, day = 0;
+
+            //Calculating Wages Per Month(UC5)
             Random randCheck = new Random();
-            int checkAttend = randCheck.Next(0, 3);
-
-            //Solved Using Switch Case(UC4)
-            switch(checkAttend)
+            while ( day < DAYS_PER_MONTH)
             {
-                case FULL_TIME_EMP:
-                    Console.WriteLine("Employee is present for full time");
-                    dailyEmpHrs = FULL_DAY_HOUR;
-                    Console.ReadLine();
-                    break;
-                case PART_TIME_EMP:
-                    Console.WriteLine("Employee is present for part time");
-                    dailyEmpHrs = HALF_DAY_HOUR;
-                    Console.ReadLine();
-                    break;
-                default:
-                    Console.WriteLine("Employee is absent for today");
-                    dailyEmpHrs = 0;
-                    Console.ReadLine();
-                    break;
-            }
+                //Check Employ Is Present Or Absent(UC1)          
+                int checkAttend = randCheck.Next(0, 3);
+                string chkEmp;
 
-            //Calculate Employ Daily Wage And Part Time Wage (UC2 & UC3)
-            dailyEmpWage = WAGE_PER_HOUR * dailyEmpHrs;
-            Console.WriteLine("Employ Todays Wage is : " +
-                "" +
-                ""+dailyEmpWage);
+                //Solved Using Switch Case(UC4)
+                switch (checkAttend)
+                {
+                    case FULL_TIME_EMP:
+                        chkEmp = "Full Time";
+                        dailyEmpHrs = FULL_DAY_HOUR;
+                        break;
+                    case PART_TIME_EMP:
+                        chkEmp = "Part Time";
+                        dailyEmpHrs = HALF_DAY_HOUR;
+                        break;
+                    default:
+                        chkEmp = "  Absent  ";
+                        dailyEmpHrs = 0;
+                        break;
+                }
+                //Calculate Employ Daily Wage And Part Time Wage (UC2 & UC3)
+                dailyEmpWage = WAGE_PER_HOUR * dailyEmpHrs;
+                day++;
+                totalWage += dailyEmpWage;
+                Console.WriteLine("Day: {0} CheckEmployee: {1} DailyWage: {2}  TotalWage: {3}", day, chkEmp, dailyEmpWage, totalWage);
+            }
+            Console.WriteLine("\nEmploy Total Wage Per Month is : " + totalWage);
             Console.ReadLine();
         }
     }
