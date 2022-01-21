@@ -28,23 +28,25 @@ namespace EmployeeWageComputation
             //Check Employ Is Present Or Absent(UC1)          
             Random randCheck = new Random();
             int checkAttend = randCheck.Next(0, 3);
-            if (checkAttend == FULL_TIME_EMP)
+
+            //Solved Using Switch Case(UC4)
+            switch(checkAttend)
             {
-                Console.WriteLine("Employee is present for full time");
-                dailyEmpHrs = FULL_DAY_HOUR;
-                Console.ReadLine();
-            }
-            else if (checkAttend == PART_TIME_EMP)
-            {
-                Console.WriteLine("Employee is present for part time");
-                dailyEmpHrs = HALF_DAY_HOUR;
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine("Employee is absent for today");
-                dailyEmpHrs = 0;
-                Console.ReadLine();
+                case FULL_TIME_EMP:
+                    Console.WriteLine("Employee is present for full time");
+                    dailyEmpHrs = FULL_DAY_HOUR;
+                    Console.ReadLine();
+                    break;
+                case PART_TIME_EMP:
+                    Console.WriteLine("Employee is present for part time");
+                    dailyEmpHrs = HALF_DAY_HOUR;
+                    Console.ReadLine();
+                    break;
+                default:
+                    Console.WriteLine("Employee is absent for today");
+                    dailyEmpHrs = 0;
+                    Console.ReadLine();
+                    break;
             }
 
             //Calculate Employ Daily Wage And Part Time Wage (UC2 & UC3)
