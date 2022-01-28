@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,14 @@ namespace EmployeeWageComputation
         private const int FULL_TIME_EMP = 1;
         private const int PART_TIME_EMP = 2;
    
-        //Initializing Variables
-        private int numOfCompany = 0;
+        //Initializing List
         private List<CompanyEmployWage> companyEmpWageList;
+        private List<CompanyEmployWage> empdDailyTotalWageList;
 
         public EmployeeWageBuilder()
         {
             companyEmpWageList = new List<CompanyEmployWage>();
+            empdDailyTotalWageList = new List<CompanyEmployWage>();
         }
 
         //Ability to manage employee wage of multiple companies using list(UC10 & UC11)
@@ -44,7 +46,8 @@ namespace EmployeeWageComputation
         {
             // local Variable
             int day = 0, hours = 0, dailyEmpHrs, dailyEmpWage, totalWage = 0;
-           
+
+            
             //Calculating Wages Per Month And Added Total Hours Condition(UC5 & UC6)
             Random randCheck = new Random();
             while (day < companyEmp.dayPerMonth && hours <= companyEmp.totalHours)
@@ -71,10 +74,26 @@ namespace EmployeeWageComputation
                 day++;
                 hours += dailyEmpHrs;
                 totalWage += dailyEmpWage;
+
+                //Storing the daily Wage along with total wage(UC13)
+                CompanyEmployWage empDailyTotalWage = new CompanyEmployWage(companyEmp.company, dailyEmpWage, totalWage);
+                empdDailyTotalWageList.Add(empDailyTotalWage);
             }
             Console.WriteLine("Employ Name : {0} \nCompany Name : {1} \nTotal Wage Per Month Is : {2} \nTotal Working Hours : {3} \nTotal Working Day is : {4}", companyEmp.name, companyEmp.company, totalWage, hours, day);
             Console.ReadLine();
             return totalWage;
+        }
+
+        //Method to show daily Wage along with total Wage list(UC13)
+        public void ShowDailyAndTotalWage(string companyName)
+        {
+            var showEmpWage = from dailyTotalEmpWage in empdDailyTotalWageList
+                              where dailyTotalEmpWage.company == companyName
+                              select dailyTotalEmpWage;
+
+            Console.WriteLine("Showing the dailywage and totalwage of company : "+companyName);
+            foreach(var empWage in showEmpWage)
+                Console.WriteLine("Daily Wage : "+empWage.dailyWage+ " TotalWage is : "+empWage.totalWage);
         }
     }
 }

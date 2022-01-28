@@ -8,15 +8,24 @@ namespace EmployeeWageComputation
 {
     public class CompanyEmployWage
     {
-
         //Declaring Variables
         public readonly string company;
+        public readonly int dailyWage;
+        public readonly int totalWage;
         public readonly string name;
         public readonly int wagePerHours;
         public readonly int dailyHours;
         public readonly int dayPerMonth;
         public readonly int totalHours;
         public int totalEmpWage;
+
+        //To store daily Wage along with total Wage list(UC13)
+        public CompanyEmployWage(string company, int dailyWage, int totalWage)
+        {
+            this.company = company;
+            this.dailyWage = dailyWage;
+            this.totalWage = totalWage;
+        }
 
         public CompanyEmployWage(string company, string name, int wagePerHours, int dailyHours, int dayPerMonth, int totalHours)
         {
