@@ -19,11 +19,11 @@ namespace EmployeeWageComputation
             Console.WriteLine("Calculating The Monthly Employ wage for multiple companies");
             Console.WriteLine();
             EmployeeWageBuilder company = new EmployeeWageBuilder();
-            company.AddCompanyEmpWageToArray("Dmart",    "Yash",  50, 8,  21, 120);
-            company.AddCompanyEmpWageToArray("Reliance", "Ajay",  40, 10, 23, 100);
-            company.AddCompanyEmpWageToArray("Microsoft","Aman",  20, 12, 22, 160);
-            company.AddCompanyEmpWageToArray("Apple",    "Raj",   45, 20, 20, 180);
-            company.AddCompanyEmpWageToArray("Oneplus",  "Omkar", 35, 10, 24, 110);
+            company.AddCompanyEmpWageToList("Dmart",    "Yash",  50, 8,  21, 120);
+            company.AddCompanyEmpWageToList("Reliance", "Ajay",  40, 10, 23, 100);
+            company.AddCompanyEmpWageToList("Microsoft","Aman",  20, 12, 22, 160);
+            company.AddCompanyEmpWageToList("Apple",    "Raj",   45, 20, 20, 180);
+            company.AddCompanyEmpWageToList("Oneplus",  "Omkar", 35, 10, 24, 110);
             company.IterateEmpWageCompany();
             Console.ReadLine();
         }

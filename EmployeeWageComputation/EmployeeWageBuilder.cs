@@ -15,28 +15,27 @@ namespace EmployeeWageComputation
    
         //Initializing Variables
         private int numOfCompany = 0;
-        private CompanyEmployWage[] companyEmpWageArray;
+        private List<CompanyEmployWage> companyEmpWageList;
 
         public EmployeeWageBuilder()
         {
-            companyEmpWageArray = new CompanyEmployWage[5];
+            companyEmpWageList = new List<CompanyEmployWage>();
         }
 
-        //Ability to manage employee wage of multiple companies using array(UC10)
-        public void AddCompanyEmpWageToArray(string company, string name, int wagePerHours, int dailyHours, int dayPerMonth, int totalHours)
+        //Ability to manage employee wage of multiple companies using list(UC10 & UC11)
+        public void AddCompanyEmpWageToList(string company, string name, int wagePerHours, int dailyHours, int dayPerMonth, int totalHours)
         {
-            companyEmpWageArray[numOfCompany] = new CompanyEmployWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
-            numOfCompany++;
+            CompanyEmployWage companyEmpWage = new CompanyEmployWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
+            companyEmpWageList.Add(companyEmpWage);
         }
 
         public void IterateEmpWageCompany()
         {
-            foreach(CompanyEmployWage companyEmp in companyEmpWageArray)
+            foreach(CompanyEmployWage companyEmp in companyEmpWageList)
             {
-                if(companyEmp != null)
-                    companyEmp.SetTotalEmployWage(ComputeMonthlyWage(companyEmp));
-                    Console.WriteLine(companyEmp.CompanyTotalWageToString());
-                    Console.ReadLine();
+                companyEmp.SetTotalEmployWage(ComputeMonthlyWage(companyEmp));
+                Console.WriteLine(companyEmp.CompanyTotalWageToString());
+                Console.ReadLine();
             }
         }
 
