@@ -8,20 +8,22 @@ using System.Threading.Tasks;
 namespace EmployeeWageComputation
 {
     //Created Employ Wage Using Class Method(UC7)
-    internal class EmployeeWageBuilder
+    internal class EmployeeWageBuilder: IComputeEmpWage
     {
         //Initializing Constant
         private const int FULL_TIME_EMP = 1;
         private const int PART_TIME_EMP = 2;
    
-        //Initializing List
+        //Initializing List And Dictionary(UC14)
         private List<CompanyEmployWage> companyEmpWageList;
         private List<CompanyEmployWage> empdDailyTotalWageList;
+        private Dictionary<string, CompanyEmployWage> companyTotalWage;
 
         public EmployeeWageBuilder()
         {
             companyEmpWageList = new List<CompanyEmployWage>();
             empdDailyTotalWageList = new List<CompanyEmployWage>();
+            companyTotalWage = new Dictionary<string, CompanyEmployWage>();
         }
 
         //Ability to manage employee wage of multiple companies using list(UC10 & UC11)
@@ -29,6 +31,7 @@ namespace EmployeeWageComputation
         {
             CompanyEmployWage companyEmpWage = new CompanyEmployWage(company, name, wagePerHours, dailyHours, dayPerMonth, totalHours);
             companyEmpWageList.Add(companyEmpWage);
+            companyTotalWage.Add(company, companyEmpWage);
         }
 
         public void IterateEmpWageCompany()
@@ -94,6 +97,12 @@ namespace EmployeeWageComputation
             Console.WriteLine("Showing the dailywage and totalwage of company : "+companyName);
             foreach(var empWage in showEmpWage)
                 Console.WriteLine("Daily Wage : "+empWage.dailyWage+ " TotalWage is : "+empWage.totalWage);
+        }
+
+        //Method to show company total wage (UC14)
+        public int GetCompanyTotalWage(string companyName)
+        {
+            return companyTotalWage[companyName].totalEmpWage;
         }
     }
 }

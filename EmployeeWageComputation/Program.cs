@@ -31,11 +31,14 @@ namespace EmployeeWageComputation
                 Console.Write("Enter a company name to find there daily wage along with total wage : ");
                 string companyName = Console.ReadLine();
                 company.ShowDailyAndTotalWage(companyName);
+                Console.WriteLine();
+                Console.Write("Enter a company name to get total wage : ");
+                string compName = Console.ReadLine();
+                Console.WriteLine("Total Wage for {0} company is : {1} ",compName, company.GetCompanyTotalWage(compName));
                 i++;
                 Console.ReadLine();
             }
-            while (i < 5);
-            
+            while (i < 5);  
         }
     }
 }
